@@ -62,7 +62,7 @@ const serverHandle = (req,res) => {
             return
         }
     
-        //未命中路由，返回40
+        //未命中路由，返回404的提示
         res.writeHead(404,{"Content-type":"text/plain"})
         res.write("404 Not Found\n")
         res.end()
