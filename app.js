@@ -4,7 +4,7 @@ const handleUserRouter = require('./src/router/user')
 
 
 //用于处理post data
-const getPostData = (res)=>{
+const getPostData = (req)=>{
     const promise = new Promise((resolve,reject) =>{
         if(req.method !== 'POST'){
             resolve({})
@@ -18,9 +18,10 @@ const getPostData = (res)=>{
         req.on('data',chunk =>{
             postData=chunk.toString()
         })
-        res.on('end',()=>{
+        req.on('end',()=>{
             if(!postData){
                 resolve({})
+                return 
             }
             resolve(JSON.parse(postData))
         }) 
@@ -38,10 +39,10 @@ const serverHandle = (req,res) => {
     req.path = url.split('?')[0]
 
     // 解析query
-    req.query = querystring.parse(url.split('?')[0])
+    req.query = querystring.parse(url.split('?')[1])
 
     //处理post data
-    getPostData(res).then(postData =>{
+    getPostData(req).then(postData =>{
         req.body = postData
 
         //处理blog路由
