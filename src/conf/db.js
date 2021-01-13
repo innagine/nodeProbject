@@ -24,6 +24,8 @@ if (env === 'dev') {             //开发环境下
 
 if (env === 'production') {     //生产环境下
     // mysql 
+
+    
     MYSQL_CONF = {
         host: 'localhost',
         user: 'root',
