@@ -16,7 +16,7 @@ const handleBlogRouter = (req,res)=>{
     const id = req.query.id
     
 
-    // 获取博客列表
+    // 获取博客列表。
     if(method==='GET'&&req.path==='/api/blog/list'){
         let author = req.query.author || ''
         const keyword = req.query.keyword || ''
@@ -24,7 +24,7 @@ const handleBlogRouter = (req,res)=>{
         // return new SuccessModel(listData)
 
         if(req.query.isadmin){
-            //管理员界面
+            //管理员界面。
             const loginCheckResult = loginCheck(req)
             if(loginCheckResult){
                 //未登录
